@@ -1,3 +1,4 @@
+/*
 The MIT License (MIT)
 
 Copyright (c) 2016 British Broadcasting Corporation.
@@ -20,3 +21,32 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+*/
+
+#include "MicroBit.h"
+
+MicroBit    uBit;
+
+void onData(MicroBitEvent)
+{
+    ManagedString s = uBit.radio.datagram.recv();
+
+    if (s == "1")
+        uBit.display.print("A");
+
+    if (s == "2")
+        uBit.display.print("B");
+}
+
+int main()
+{
+    // Initialise the micro:bit runtime.
+    uBit.init();
+
+    uBit.messageBus.listen(MICROBIT_ID_RADIO, MICROBIT_RADIO_EVT_DATAGRAM, onData);
+    uBit.radio.enable();
+
+    while(1)
+        uBit.sleep(1000);
+}
+

@@ -1,3 +1,4 @@
+/*
 The MIT License (MIT)
 
 Copyright (c) 2016 British Broadcasting Corporation.
@@ -20,3 +21,21 @@ THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
 LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
 FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER
 DEALINGS IN THE SOFTWARE.
+*/
+
+#include "MicroBit.h"
+
+MicroBit uBit;
+
+int main()
+{
+    // Initialise the micro:bit runtime.
+    uBit.init();
+
+    // Setup a simple triangular waveform.
+    MicroBitImage img("1 0 0 0 0 0 0 0 0 1\n0 1 0 0 0 0 0 0 1 0\n0 0 1 0 0 0 0 1 0 0\n0 0 0 1 0 0 1 0 0 0\n0 0 0 0 1 1 0 0 0 0\n");
+     
+    while(1)
+        uBit.display.scroll(img, 80, -1);
+}
+
