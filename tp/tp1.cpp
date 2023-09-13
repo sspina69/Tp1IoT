@@ -26,9 +26,9 @@ DEALINGS IN THE SOFTWARE.
 #include "MicroBit.h"
 #include "string.h"
 
-MicroBit uBit;
+//MicroBit uBit;
 
-int main()
+int _main()
 {
     // Initialise the micro:bit runtime.
     uBit.init();
